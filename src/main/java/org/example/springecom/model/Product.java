@@ -1,15 +1,10 @@
 package org.example.springecom.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import jakarta.persistence.*;
 
 
 import java.math.BigDecimal;
+import java.util.Arrays;
 import java.util.Date;
 
 
@@ -25,6 +20,11 @@ public class Product {
     private Date releaseDate;
     private boolean productAvailable;
     private int stockQuantity;
+    private String imageName;
+    private String imageType;
+    @Lob //large object
+    private byte[] imageData;
+
 
 
     public Product(int id, String name, String description, String brand, BigDecimal price, String category, Date releaseDate, boolean productAvailable, int stockQuantity) {
@@ -37,6 +37,9 @@ public class Product {
         this.releaseDate = releaseDate;
         this.productAvailable = productAvailable;
         this.stockQuantity = stockQuantity;
+        this.imageName = "";
+        this.imageType = "";
+        this.imageData = null;
     }
 
     public Product() {}
@@ -113,6 +116,25 @@ public class Product {
         this.stockQuantity = stockQuantity;
     }
 
+    public String getImageName() {
+        return imageName;
+    }
+    public void setImageName(String imageName) {
+        this.imageName = imageName;
+    }
+    public String getImageType() {
+        return imageType;
+    }
+    public void setImageType(String imageType) {
+        this.imageType = imageType;
+    }
+    public byte[] getImageData(byte[] bytes) {
+        return imageData;
+    }
+    public void setImageData(byte[] imageData) {
+        this.imageData = imageData;
+    }
+
     @Override
     public String toString() {
         return "Product{" +
@@ -125,6 +147,9 @@ public class Product {
                 ", releaseDate=" + releaseDate +
                 ", productAvailable=" + productAvailable +
                 ", stockQuantity=" + stockQuantity +
+                ", imageName='" + imageName + '\'' +
+                ", imageType='" + imageType + '\'' +
+                ", imageData=" + imageData +
                 '}';
     }
 }
