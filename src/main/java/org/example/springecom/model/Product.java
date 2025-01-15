@@ -128,7 +128,7 @@ public class Product {
     public void setImageType(String imageType) {
         this.imageType = imageType;
     }
-    public byte[] getImageData(byte[] bytes) {
+    public byte[] getImageData() {
         return imageData;
     }
     public void setImageData(byte[] imageData) {
