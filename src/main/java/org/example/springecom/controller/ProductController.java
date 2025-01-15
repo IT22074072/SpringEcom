@@ -52,7 +52,7 @@ public class ProductController {
     public ResponseEntity<?> addProduct(@RequestPart("product") Product product, @RequestPart("imageFile") MultipartFile imageFile) {
         Product savedProduct = null;
         try {
-            savedProduct = service.addProduct(product, imageFile);
+            savedProduct = service.addOrUpdateProduct(product, imageFile);
             return new ResponseEntity<>(savedProduct, HttpStatus.CREATED);
 
         } catch (IOException e) {
@@ -60,6 +60,18 @@ public class ProductController {
         }
     }
 
+
+    @PutMapping("/product/{id}")
+    public ResponseEntity<String>  updateProduct(@PathVariable("id") int id, @RequestPart("product") Product product, @RequestPart("imageFile") MultipartFile imageFile){
+        Product updatedProduct = null;
+        try {
+            updatedProduct = service.addOrUpdateProduct(product, imageFile);
+            return new ResponseEntity<>("Updated!", HttpStatus.OK);
+        }
+        catch (IOException e){
+            return new ResponseEntity<>(e.getMessage(),HttpStatus.BAD_REQUEST );
+        }
+    }
 
 
 
